@@ -35,6 +35,7 @@ class PostController extends ApiResponseController
     {
 
         $post->image;
+        $post->images;
         $post->category;
 
         return $this->successResponse($post);
@@ -52,9 +53,22 @@ class PostController extends ApiResponseController
 
     public function category(Category $category)
     {
+
+        $posts = Post::join('post_images', 'post_images.post_id', '=', 'posts.id')
+            ->join('categories', 'categories.id', '=', 'posts.category_id')
+            ->select('posts.*', 'categories.title as category', 'post_images.image')
+            ->orderBy('posts.created_at', 'desc')
+            ->where('categories.id', $category->id)->paginate(10);
+
         return $this->successResponse([
-            'post' => $category->post()->paginate(10),
-            'category' => $category
+            "posts" => $posts,
+            "category" => $category
         ]);
+
+        //Sin imágenes
+        // return $this->successResponse([
+        //     'posts' => $category->post()->paginate(10),
+        //     'category' => $category
+        // ]);
     }
 }

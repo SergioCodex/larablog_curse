@@ -23,4 +23,21 @@
     </div>
 </form>
 
+<div class="row mt-4">
+    @foreach ($post->images as $image)
+
+    <div class="col-3">
+        <img class="w-100" src="{{$image->image}}" alt="">
+        <a href="{{ route("post.image-download", $image->id)}}" class="float-left btn btn-success btn-sm mt-2">Descargar</a>
+
+        <form action="{{ route("post.image-delete", $image->id)}}" method="POST">
+            @method("DELETE")
+            @csrf
+            <button class="float-right btn btn-danger btn-sm mt-2" type="submit">Borrar</button>
+        </form>
+    </div>
+
+    @endforeach
+</div>
+
 @endsection

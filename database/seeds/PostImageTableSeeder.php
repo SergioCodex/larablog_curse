@@ -19,7 +19,8 @@ class PostImageTableSeeder extends Seeder
 
         foreach ($posts as $key => $p) {
                 PostImage::create([
-                    'image' => "1231232131321.png",
+                    'image' => "/storage/images/FLfp2xCOyubQpu87NsUcuuU7HtjdocFELVv9vJXU.jpeg",
+                    'image_download' => '/public/images/FLfp2xCOyubQpu87NsUcuuU7HtjdocFELVv9vJXU.jpeg',
                     'post_id' => $p->id,
                 ]);
             

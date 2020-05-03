@@ -5,8 +5,28 @@
  */
 
 require('./bootstrap');
+const ClassicEditor = require('@ckeditor/ckeditor5-build-classic');
+var MyUploadAdapter = require('./assets/ckeditor/MyUploadAdapter.js');
 
-window.Vue = require('vue');
+function MyCustomUploadAdapterPlugin( editor ) {
+    editor.plugins.get( 'FileRepository' ).createUploadAdapter = ( loader ) => {
+        // Configure the URL to the upload script in your back-end here!
+        return new MyUploadAdapter( loader );
+    };
+}
+
+ClassicEditor
+    .create( document.querySelector( '#content' ), {
+        extraPlugins: [ MyCustomUploadAdapterPlugin ],
+    } )
+    .then( editor => {
+        console.log( editor );
+    } )
+    .catch( error => {
+        console.error( error );
+    } );
+
+import router from './assets/router.js';
 
 /**
  * The following block of code may be used to automatically register your
@@ -19,7 +39,30 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+// Vue.component(
+//     'example-component',
+//     require('./components/ExampleComponent.vue').default
+// );
+
+
+
+// Define a new component called button-counter
+// Vue.component(
+//     'list-posts',
+//     require('./components/PostListComponent.vue').default
+// );
+
+Vue.component(
+    'modal-post',
+    require('./components/PostModalComponent.vue').default
+);
+
+Vue.component(
+    'post-list-default',
+    require('./components/PostListDefaultComponent.vue').default
+);
+
+//import App from './components/App.vue';
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -29,4 +72,6 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#app',
+    //render: h => h(App),
+    router,
 });

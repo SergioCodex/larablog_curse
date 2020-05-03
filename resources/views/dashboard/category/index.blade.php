@@ -2,7 +2,7 @@
 
 @section('content')
 
-<a class="btn btn-success btn-block mt-3 mb-3" href="{{ route('category.create')}}">Crear
+<a class="btn btn-success btn-block mt-3 mb-3" href="{{ route('category.create')}}"><i class="fa fa-plus"></i> Crear
 </a>
 
 <table class="table">
@@ -41,10 +41,10 @@
                 {{ $category->updated_at->format('d-m-Y') }}
             </td>
             <td>
-                <a href="{{ route('category.show', $category->id) }}" class="btn btn-primary">Ver</a>
-                <a href="{{ route('category.edit', $category->id) }}" class="btn btn-primary">Editar</a>
+                <a href="{{ route('category.show', $category->id) }}" class="btn btn-primary"><i class="fa fa-eye"></i></a>
+                <a href="{{ route('category.edit', $category->id) }}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
                 <button data-toggle="modal" data-target="#deleteModal" data-id="{{ $category->id }}"
-                    class="btn btn-danger">Eliminar</button>
+                    class="btn btn-danger"><i class="fa fa-trash"></i></button>
 
             </td>
         </tr>

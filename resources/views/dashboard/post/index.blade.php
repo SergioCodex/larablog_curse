@@ -2,8 +2,19 @@
 
 @section('content')
 
-<a class="btn btn-success btn-block mt-3 mb-3" href="{{ route('post.create')}}">Crear
+<a class="btn btn-success btn-block mt-3 mb-3" href="{{ route('post.create')}}">
+    <i class="fa fa-plus"></i> Crear
 </a>
+
+<form action="{{ route("post.index") }}" method="GET" class="form-inline mb-2">
+    <select name="created_at" id="" class="form-control">
+        <option value="DESC">Descendente</option>
+        <option {{ request('created_at') == "ASC" ? "selected" : ""}}
+        value="ASC">Ascendente</option>
+    </select>
+<input type="text" value="{{ request('search') }}" name="search" placeholder="Buscar..." class="form-control ml-2">
+    <button class="btn btn-success ml-2" type="submit"> <i class="fa fa-search"></i></button>
+</form>
 
 <table class="table">
     <thead>
@@ -53,10 +64,15 @@
                 {{ $post->updated_at->format('d-m-Y') }}
             </td>
             <td>
-                <a href="{{ route('post.show', $post->id) }}" class="btn btn-primary">Ver</a>
-                <a href="{{ route('post.edit', $post->id) }}" class="btn btn-primary">Editar</a>
+                <a href="{{ route('post.show', $post->id) }}" class="btn btn-primary"><i class="fa fa-eye"></i></a>
+                <a href="{{ route('post.edit', $post->id) }}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+
+                @if (count($post->comments) > 0)
+                <a href="{{ route('post-comment.post', $post->id) }}" class="btn btn-primary"><i class="fa fa-comment"></i></a>
+                @endif
+
                 <button data-toggle="modal" data-target="#deleteModal" data-id="{{ $post->id }}"
-                    class="btn btn-danger">Eliminar</button>
+                    class="btn btn-danger"><i class="fa fa-trash"></i></button>
 
             </td>
         </tr>
@@ -64,7 +80,11 @@
     </tbody>
 </table>
 
-{{ $posts->links() }}
+{{ $posts->appends(
+    [
+        'created_at' => request('created_at'),
+        'search' => request('search')
+    ])->links() }}
 
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">

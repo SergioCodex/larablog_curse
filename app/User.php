@@ -3,6 +3,8 @@
 namespace App;
 
 use App\Rol;
+use App\Tag;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -40,5 +42,22 @@ class User extends Authenticatable
 
     public function rol(){
         return $this->belongsTo(Rol::class);
+    }
+
+    // public function getNameAttribute($value){
+    //     return strtoupper($value);
+    // }
+
+    public function setPasswordAttribute($value){
+        $this->attributes['password'] = Hash::make($value);
+    }
+
+    public function tags()
+    {
+        return $this->morphToMany(Tag::class, 'taggable');
+    }
+
+    public function isAdmin(){
+        return $this->rol->key == "admin";
     }
 }

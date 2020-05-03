@@ -31,11 +31,22 @@
 </div>
 
 <div class="form-group">
+    <label for="tags">Tags</label>
+    <select multiple class="form-control" name="tags_id[]" id="tags_id">
+        @foreach ($tags as $title => $id)
+    <option {{ in_array($id, old('tags_id') ?  : $post->tags->pluck("id")->toArray()) ? "selected" : "" }} value="{{ $id }}">{{ $title }}</option>
+        @endforeach
+    </select>
+</div>
+
+<input type="hidden" id="token" value="{{ csrf_token() }}">
+
+<div class="form-group">
     <label for="content">Contenido</label>
     <textarea class="form-control" name="content" id="content"
         rows="3">{{ old('content', $post->content ?? '') }}</textarea>
     <!--@error('content')
-        <small class="text-danger">{{ $message}}</small>
+        <small class="text-danger">{{$message}}</small>
         @enderror-->
 </div>
 <input type="submit" class="btn btn-primary" value="Enviar"></button>

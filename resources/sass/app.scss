@@ -6,3 +6,20 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+// FontAwesome
+@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "~@fortawesome/fontawesome-free/scss/solid.scss";
+
+.bg-verde {
+    background-color: #4dc0b5;
+}
+
+.bg-verde-oscuro{
+    background-color: #46ada3;
+}
+
+.logo_200 {
+    width:  300px;
+    height: 100px;
+}

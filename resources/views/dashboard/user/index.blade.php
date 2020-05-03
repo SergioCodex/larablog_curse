@@ -2,7 +2,7 @@
 
 @section('content')
 
-<a class="btn btn-success btn-block mt-3 mb-3" href="{{ route('user.create')}}">Crear
+<a class="btn btn-success btn-block mt-3 mb-3" href="{{ route('user.create')}}"><i class="fa fa-plus"></i> Crear
 </a>
 
 <table class="table">
@@ -59,10 +59,10 @@
                 {{ $user->updated_at->format('d-m-Y') }}
             </td>
             <td>
-                <a href="{{ route('user.show', $user->id) }}" class="btn btn-primary">Ver</a>
-                <a href="{{ route('user.edit', $user->id) }}" class="btn btn-primary">Editar</a>
+                <a href="{{ route('user.show', $user->id) }}" class="btn btn-primary"><i class="fa fa-eye"></i></a>
+                <a href="{{ route('user.edit', $user->id) }}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
                 <button data-toggle="modal" data-target="#deleteModal" data-id="{{ $user->id }}"
-                    class="btn btn-danger">Eliminar</button>
+                    class="btn btn-danger"><i class="fa fa-trash"></i></button>
 
             </td>
         </tr>
