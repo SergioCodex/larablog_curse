@@ -27,6 +27,9 @@ ClassicEditor
     } );
 
 import router from './assets/router.js';
+import VueMask from 'v-mask';
+import Vuelidate from 'vuelidate';
+import VueAWN from "vue-awesome-notifications";
 
 /**
  * The following block of code may be used to automatically register your
@@ -44,8 +47,6 @@ import router from './assets/router.js';
 //     require('./components/ExampleComponent.vue').default
 // );
 
-
-
 // Define a new component called button-counter
 // Vue.component(
 //     'list-posts',
@@ -61,6 +62,10 @@ Vue.component(
     'post-list-default',
     require('./components/PostListDefaultComponent.vue').default
 );
+
+Vue.use(VueMask);
+Vue.use(Vuelidate);
+Vue.use(VueAWN);
 
 //import App from './components/App.vue';
 

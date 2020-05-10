@@ -54,3 +54,16 @@ Route::get('/contact', 'web\WebController@contact');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+
+Route::get('/charts', 'PaquetesController@charts')->name('charts');
+Route::get('/image', 'PaquetesController@image')->name('image');
+Route::get('/qr', 'PaquetesController@qr_generate')->name('qr');
+Route::get('/stripe_create_customer', 'PaquetesController@stripe_create_customer');
+Route::get('/stripe_payment_method_register', 'PaquetesController@stripe_payment_method_register');
+Route::get('/stripe_payment_method_create', 'PaquetesController@stripe_payment_method_create');
+Route::get('/stripe_payment_method', 'PaquetesController@stripe_payment_method');
+Route::get('/stripe_create_only_pay_form', 'PaquetesController@stripe_create_only_pay_form');
+Route::get('/stripe_create_only_pay', 'PaquetesController@stripe_create_only_pay');
+Route::get('/stripe_subscription', 'PaquetesController@stripe_subscription');

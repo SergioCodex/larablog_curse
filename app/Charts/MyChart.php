@@ -1,0 +1,24 @@
+<?php
+
+namespace App\Charts;
+
+use ConsoleTVs\Charts\Classes\Chartjs\Chart;
+
+class MyChart extends Chart
+{
+    /**
+     * Initializes the chart.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    public function my_chart(){
+        $chart = new Chart;
+
+        return $chart;
+    }
+}
